@@ -5,13 +5,14 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 function Mapcreation () {
 	
 }
-function bosscreate (current: any[]) {
-    if (true) {
-    	
+function bosscreate (current: number) {
+    if (current == 0) {
+        bossspeed = 50
     } else {
     	
     }
 }
+let bossspeed = 0
 let BLueet: Sprite = null
 tiles.setCurrentTilemap(tilemap`level`)
 let Gracity = 300
@@ -21,7 +22,6 @@ let Projectile_speed = 150
 let Pause_before_shooting = 100
 let Jump_speed = 0 - Math.sqrt(2 * (Gracity * Jump_height))
 let Taxicol = sprites.create(assets.image`myImage0`, SpriteKind.Player)
-scene.cameraFollowSprite(Taxicol)
 Taxicol.ay = Gracity
 controller.moveSprite(Taxicol, Player_speed, 100)
 info.setLife(18)
