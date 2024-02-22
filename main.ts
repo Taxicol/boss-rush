@@ -8,10 +8,12 @@ function Mapcreation () {
 function bosscreate (current: number) {
     if (current == 0) {
         bossspeed = 50
+        bosshealth = 100
     } else {
     	
     }
 }
+let bosshealth = 0
 let bossspeed = 0
 let BLueet: Sprite = null
 tiles.setCurrentTilemap(tilemap`level`)
