@@ -2,6 +2,16 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     BLueet = sprites.create(assets.image`TaxicolProjectile`, SpriteKind.Projectile)
     BLueet.setVelocity(50, 0)
 })
+function Mapcreation () {
+	
+}
+function bosscreate (current: any[]) {
+    if (true) {
+    	
+    } else {
+    	
+    }
+}
 let BLueet: Sprite = null
 tiles.setCurrentTilemap(tilemap`level`)
 let Gracity = 300
@@ -21,3 +31,4 @@ Enemy_health.setColor(12, 1)
 Enemy_health.setBarBorder(1, 4)
 Enemy_health.right = 100
 Enemy_health.top = 0
+Enemy_health.setFlag(SpriteFlag.RelativeToCamera, true)
