@@ -30,6 +30,10 @@ namespace myTiles {
     export const tile13 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile14 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile15 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile16 = image.ofBuffer(hex``);
 
     helpers._registerFactory("tilemap", function(name: string) {
         switch(helpers.stringTrim(name)) {
@@ -65,6 +69,17 @@ namespace myTiles {
 ...................2............................................
 ................................................................
 `, [myTiles.transparency16,myTiles.tile3,myTiles.tile6], TileScale.Sixteen);
+            case "level0":
+            case "level3":return tiles.createTilemap(hex`0a0008000000000000000000000100000000000000000000000202020100000000000000000000000202020000000000000000000001020202000000000000000100000000020000000002020202020202020202`, img`
+. . . . . . . . . . 
+. . . . . . . . . . 
+. 2 2 2 . . . . . . 
+. . . . . . 2 2 2 . 
+. . . . . . . . . . 
+2 2 2 . . . . . . . 
+. . . . . 2 . . . . 
+2 2 2 2 2 2 2 2 2 2 
+`, [myTiles.transparency16,myTiles.tile7,myTiles.tile8], TileScale.Sixteen);
         }
         return null;
     })
@@ -100,6 +115,10 @@ namespace myTiles {
             case "tile13":return tile13;
             case "myTile12":
             case "tile14":return tile14;
+            case "myTile13":
+            case "tile15":return tile15;
+            case "myTile14":
+            case "tile16":return tile16;
         }
         return null;
     })
