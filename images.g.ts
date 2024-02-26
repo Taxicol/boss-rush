@@ -3,25 +3,6 @@ namespace myImages {
 
     helpers._registerFactory("image", function(name: string) {
         switch(helpers.stringTrim(name)) {
-            case "image4":
-            case "myImage2":return img`
-f f f f f f f f f f f f f f f f 
-f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 f 
-f f f f f f f 1 1 f f f f f 1 f 
-f f 1 1 1 1 f 1 1 f f 1 1 f 1 f 
-f 1 f 1 1 f f 1 1 f f 1 1 f 1 f 
-f 1 f f f f f 1 1 f f f f f 1 f 
-f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 f 
-f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 f 
-f f f f f f f f f f f f f f f f 
-. . . . . . . . . . . . . . . . 
-. . . . . f 1 1 1 1 f . . . . . 
-. . . f f f 1 1 1 1 f f f . . . 
-. . f f f f 1 1 1 1 f f f . . . 
-. . . . . . . . . . . . . . . . 
-. . . . f f . . . . f f f . . . 
-. . . f f f . . . . f f f . . . 
-`;
             case "image3":
             case "myImage1":return img`
 f f f f f f f f f f f f f f f f 
@@ -130,57 +111,6 @@ f f f f f f f f f f f f f f f f
 ...111111111...111111111
 ...111111111...111111111
 `;
-            case "image7":
-            case "myImage5":return img`
-........................
-..........bbbabbbabbbbb.
-.........bbbbbaaabbbbbbb
-..........ffffffffffbbbb
-..........dffffffffffbbb
-..........ddddddddddffbb
-..........ddffdddddfddbb
-..........dddffdddffdddb
-..........ddddfddffddddb
-..........df1dddddddf1db
-..........dddddddddddddb
-....fff...bbdddddddddddb
-...f11ff..bbbbbbbbbbbbbb
-..ff111f.bbbbbbbbbbbbbbb
-..f1111fbbbbbbbbbbbbbbbb
-4fffffffbbbbbbbbbbbbbbbb
-....dddfbbbbbbcbbbbbbbbb
-....dddfbbbbbccbbbbbbbbb
-....ddddbbbbccbbbbbbbbbb
-........cccccbbbbbbbbbbb
-........bbbbbbbbbbbbbbbb
-........bbbbbbbbbbbbbbbb
-........bbbbbbbbbbbbbbbb
-........bbbbbbbbbbbbbbbb
-........bbbbbbbbbbbbbbbb
-........bbbbbbbbbbbbbbbb
-........bbbbbbbbbbbbbbbb
-........bbbbbbbbbbbbbbbb
-........ffffffffffffffbb
-........ffffffffffffffff
-........ffffffffffffffff
-........ffffff....ffffff
-........fffff......fffff
-........fffff......fffff
-........ffff........ffff
-........ffff........ffff
-........ffff........ffff
-........ffff........ffff
-........ffff........ffff
-........ffff........ffff
-........ffff........ffff
-........ffff........ffff
-........ffff........ffff
-........ffff........ffff
-........111.........111.
-.....111111.....1111111.
-...111111111...111111111
-...111111111...111111111
-`;
             case "image9":
             case "myImage4":return img`
 . . . . . . . . . . . . . . . . 
@@ -240,6 +170,95 @@ f f f f f f f . . . f 1 f 1 f f
 . 4 4 4 4 4 4 4 4 4 4 4 4 4 4 . 
 4 4 4 4 4 f 4 4 4 4 4 4 4 4 4 . 
 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+`;
+            case "image7":
+            case "myImage5":return img`
+........................
+..........bbbabbbabbbbb.
+.........bbbbbaaabbbbbbb
+..........ffffffffffbbbb
+..........dffffffffffbbb
+..........ddddddddddffbb
+..........ddffdddddfddbb
+..........dddffdddffdddb
+..........ddddfddffddddb
+..........df1dddddddf1db
+..........dddddddddddddb
+....fff...bbdddddddddddb
+...f11ff..bbbbbbbbbbbbbb
+..ff111f.bbbbbbbbbbbbbbb
+..f1111fbbbbbbbbbbbbbbbb
+4fffffffbbbbbbbbbbbbbbbb
+....dddfbbbbbbcbbbbbbbbb
+....dddfbbbbbccbbbbbbbbb
+....ddddbbbbccbbbbbbbbbb
+........cccccbbbbbbbbbbb
+........bbbbbbbbbbbbbbbb
+........bbbbbbbbbbbbbbbb
+........bbbbbbbbbbbbbbbb
+........bbbbbbbbbbbbbbbb
+........bbbbbbbbbbbbbbbb
+........bbbbbbbbbbbbbbbb
+........bbbbbbbbbbbbbbbb
+........bbbbbbbbbbbbbbbb
+........ffffffffffffffbb
+........ffffffffffffffff
+........ffffffffffffffff
+........ffffff....ffffff
+........fffff......fffff
+........fffff......fffff
+........ffff........ffff
+........ffff........ffff
+........ffff........ffff
+........ffff........ffff
+........ffff........ffff
+........ffff........ffff
+........ffff........ffff
+........ffff........ffff
+........ffff........ffff
+........ffff........ffff
+........111.........111.
+.....111111.....1111111.
+...111111111...111111111
+...111111111...111111111
+`;
+            case "image4":
+            case "myImage2":return img`
+f f f f f f f f f f f f f f f f 
+f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 f 
+f f f f f f f 1 1 f f f f f 1 f 
+f f 1 1 1 1 f 1 1 f f 1 1 f 1 f 
+f 1 f 1 1 f f 1 1 f f 1 1 f 1 f 
+f 1 f f f f f 1 1 f f f f f 1 f 
+f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 f 
+f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 f 
+f f f f f f f f f f f f f f f f 
+. . . . . . . . . . . . . . . . 
+. . . . . f 1 1 1 1 f . . . . . 
+. . . f f f 1 1 1 1 f f f . . . 
+. . f f f f 1 1 1 1 f f f . . . 
+. . . . . . . . . . . . . . . . 
+. . . . f f . . . . f f f . . . 
+. . . f f f . . . . f f f . . . 
+`;
+            case "image11":
+            case "myImage7":return img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
 `;
         }
         return null;
