@@ -46,6 +46,14 @@ function Bosscreate (Current: number) {
     } else if (Current == 2) {
         Bossheakth = 50
         Bosshealthnearend = Bossheakth / 3
+        tiles.setCurrentTilemap(tilemap`level0`)
+        tiles.placeOnTile(Taxicol, tiles.getTileLocation(2, 2))
+        Slime = tiles.getTilesByType(assets.tile`myTile5`)
+        fireindex = 0
+        finalattack = game.runtime()
+        Enemy_health.setColor(4, 15)
+        Healthreset()
+        Cameramovement()
     } else {
     	
     }
@@ -54,6 +62,9 @@ function Healthreset () {
     Enemy_health.max = Bossheakth
     Enemy_health.value = Bossheakth
 }
+let finalattack = 0
+let fireindex = 0
+let Slime: tiles.Location[] = []
 let Bosshealthnearend = 0
 let bossfiretime = 0
 let Theboss: Sprite = null
@@ -65,6 +76,7 @@ let sidescroller = 0
 let Cameratarget: Sprite = null
 let Currentboss = 0
 let Enemy_health: StatusBarSprite = null
+let Taxicol: Sprite = null
 tiles.setCurrentTilemap(tilemap`level`)
 let Gracity = 300
 let Jump_height = 34
@@ -72,7 +84,7 @@ let Player_speed = 100
 let Projectile_speed = 150
 let Pause_before_shooting = 100
 let Jump_speed = 0 - Math.sqrt(2 * (Gracity * Jump_height))
-let Taxicol = sprites.create(assets.image`myImage0`, SpriteKind.Player)
+Taxicol = sprites.create(assets.image`myImage0`, SpriteKind.Player)
 Taxicol.ay = Gracity
 controller.moveSprite(Taxicol, Player_speed, 100)
 info.setLife(18)

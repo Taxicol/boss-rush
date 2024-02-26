@@ -60,57 +60,6 @@ f f f f f f f f f f f f f f f f
 . . . f f f . . . . f f . . . . 
 . . . f f f . . . . f f f . . . 
 `;
-            case "image1":
-            case "myImage":return img`
-........................
-..........bbbabbbabbbbb.
-.........bbbbbaaabbbbbbb
-..........ffffffffffbbbb
-..........dffffffffffbbb
-..........ddddddddddffbb
-..........ddffdddddfddbb
-..........dddffdddffdddb
-..........ddddfddffddddb
-..........df1dddddddf1db
-..........dddddddddddddb
-....fff...bbdddddddddddb
-...f11ff..bbbbbbbbbbbbbb
-..ff111f.bbbbbbbbbbbbbbb
-..f1111fbbbbbbbbbbbbbbbb
-4fffffffbbbbbbbbbbbbbbbb
-....dddfbbbbbbcbbbbbbbbb
-....dddfbbbbbccbbbbbbbbb
-....ddddbbbbccbbbbbbbbbb
-........cccccbbbbbbbbbbb
-........bbbbbbbbbbbbbbbb
-........bbbbbbbbbbbbbbbb
-........bbbbbbbbbbbbbbbb
-........bbbbbbbbbbbbbbbb
-........bbbbbbbbbbbbbbbb
-........bbbbbbbbbbbbbbbb
-........bbbbbbbbbbbbbbbb
-........bbbbbbbbbbbbbbbb
-........ffffffffffffffbb
-........ffffffffffffffff
-........ffffffffffffffff
-........ffffff....ffffff
-........fffff......fffff
-........fffff......fffff
-........ffff........ffff
-........ffff........ffff
-........ffff........ffff
-........ffff........ffff
-........ffff........ffff
-........ffff........ffff
-........ffff........ffff
-........ffff........ffff
-........ffff........ffff
-........ffff........ffff
-........111.........111.
-.....111111.....1111111.
-...111111111...111111111
-...111111111...111111111
-`;
             case "image9":
             case "myImage4":return img`
 . . . . . . . . . . . . . . . . 
@@ -157,19 +106,6 @@ f f f f f f f . . . f 1 f 1 f f
 9 1 9 9 9 9 9 9 
 . 9 1 1 1 1 9 . 
 . . . . . . . . 
-`;
-            case "image6":
-            case "Failedslimegame":return img`
-. . . . . . 4 4 4 4 . . . . . . 
-. . . 4 4 4 4 4 4 4 f 4 4 . . . 
-. . 4 4 4 4 4 4 4 f f 4 4 4 . . 
-. . 4 4 4 4 4 4 4 f 4 4 4 4 . . 
-. 4 4 4 f 4 4 4 f 4 f 4 4 4 . . 
-. 4 4 4 f f 4 4 4 4 4 4 4 4 4 . 
-. 4 4 4 4 f 4 4 4 4 4 4 4 4 4 . 
-. 4 4 4 4 4 4 4 4 4 4 4 4 4 4 . 
-4 4 4 4 4 f 4 4 4 4 4 4 4 4 4 . 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
 `;
             case "image7":
             case "myImage5":return img`
@@ -259,6 +195,89 @@ f f f f f f f f f f f f f f f f
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
+`;
+            case "image12":
+            case "myImage8":return img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . 4 4 4 4 4 4 4 4 . . . . 
+. . 4 4 4 4 4 4 4 4 4 4 4 . . . 
+. 4 4 4 4 4 4 4 4 4 4 4 4 4 . . 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 . 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+`;
+            case "image1":
+            case "myImage":return img`
+........................
+..........bbbabbbabbbbb.
+.........bbbbbaaabbbbbbb
+..........ffffffffffbbbb
+..........dffffffffffbbb
+..........ddddddddddffbb
+..........ddffdddddfddbb
+..........dddffdddffdddb
+..........ddddfddffddddb
+..........df1dddddddf1db
+..........dddddddddddddb
+....888...bbdddddddddddb
+...81188..bbbbbbbbbbbbbb
+..881118.bbbbbbbbbbbbbbb
+..811118bbbbbbbbbbbbbbbb
+48888888bbbbbbbbbbbbbbbb
+....ddd8bbbbbbcbbbbbbbbb
+....ddd8bbbbbccbbbbbbbbb
+....ddddbbbbccbbbbbbbbbb
+........cccccbbbbbbbbbbb
+........bbbbbbbbbbbbbbbb
+........bbbbbbbbbbbbbbbb
+........bbbbbbbbbbbbbbbb
+........bbbbbbbbbbbbbbbb
+........bbbbbbbbbbbbbbbb
+........bbbbbbbbbbbbbbbb
+........bbbbbbbbbbbbbbbb
+........bbbbbbbbbbbbbbbb
+........ffffffffffffffbb
+........ffffffffffffffff
+........ffffffffffffffff
+........ffffff....ffffff
+........fffff......fffff
+........fffff......fffff
+........ffff........ffff
+........ffff........ffff
+........ffff........ffff
+........ffff........ffff
+........ffff........ffff
+........ffff........ffff
+........ffff........ffff
+........ffff........ffff
+........ffff........ffff
+........ffff........ffff
+........111.........111.
+.....111111.....1111111.
+...111111111...111111111
+...111111111...111111111
+`;
+            case "image6":
+            case "Failedslimegame":return img`
+. . . . . . 4 4 4 4 . . . . . . 
+. . . 4 4 4 4 4 4 4 f 4 4 . . . 
+. . 4 4 4 4 4 4 4 f f 4 4 4 . . 
+. . 4 4 4 4 4 4 4 f 4 4 4 4 . . 
+. 4 4 4 f 4 4 4 f 4 f 4 4 4 . . 
+. 4 4 4 f f 4 4 4 4 4 4 4 4 4 . 
+. 4 4 4 4 f 4 4 4 4 4 4 4 4 4 . 
+. 4 4 4 4 4 4 4 4 4 4 4 4 4 4 . 
+4 4 4 4 4 f 4 4 4 4 4 4 4 4 4 . 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
 `;
         }
         return null;
