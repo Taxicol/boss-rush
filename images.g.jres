@@ -64,6 +64,31 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "TaxicolProjectile"
     },
+    "image14": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAACq+qqqAAAAqqqq/x+qCqCqEaH6/6qqqqnxofofqqqqqRGh+v+qqqqpqqr6/6qqqqkRofofqqqqqfGh/y+qqqCqEaH/L6oKAKCq+v+hqgAAAKqqqgoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myImage10"
+    },
+    "image15": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAiIiIAAAAAICIiIgAAAAAiIiIiAgAAACIiIiIiAAAAIiIiIiIAACAiIiIiIu7u7iIiIiIiDncAIiIiIiLudwAiIiIiInB3ICIiIiICcHcgIiIiIgIAcAAiIiIiAAAAACIiIgIAAAAAICIiAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myImage11"
+    },
+    "image16": {
+        "data": "hwQQABAAAAAAAAAMAAAAAAAAAMzMAAAAAAAAwMwAAADAzMzMzMwMAADMzMzMzMwAAMDMIsIRzMwAwMz/8hzBzAAAzPwiHMHMAMDMzMwcwQwAAMzMzBzBDADAzP/yHMzMAMzMIiIRzMzAzMwswszMzAAAAMDMzAwAAAAAwMwAAAAAAADMAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myImage12"
+    },
+    "image17": {
+        "data": "hwQQABAAAAAAABARAAAAAAAAEBEAAAAAAAAQEQgAAIgAAACACAAAiAAAgIiIiAiIAACIiP//iIgAgIH4H/GIiACAj/Hx/4gAAICI8fHxiAAAAIDx8fGIAACAiPjx8YiIAICPGPH/iIgAgIGIiIgIiAAAiIiICACIAAAAAIARAYgAAAAAABEBAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myImage13"
+    },
+    "image18": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAgBGIEhIB7g0QEREfEQHuDRAYgR8SAe4OEBgRHyIB4e6AiIgSIfER7hAiERIh0f8OECIREiHxEe4QIhEfIgHh7hAiER8SAe4OECIRHxEB7g0QIhESEgHuDQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "myImage14"
+    },
     "anim1": {
         "namespace": "myAnimations",
         "id": "anim1",

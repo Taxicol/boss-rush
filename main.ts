@@ -124,11 +124,16 @@ let Cameratarget: Sprite = null
 let finalattack = 0
 let Theboss: Sprite = null
 let Bossspawn: Image = null
-let powerup: Sprite = null
 let SpawnLocation: tiles.Location[] = []
 let Currentboss = 0
 let Enemy_health: StatusBarSprite = null
 let Taxicol: Sprite = null
+let powerup: Sprite = null
+powerup = sprites.create(assets.image`myImage10`, SpriteKind.Powerup)
+powerup = sprites.create(assets.image`myImage11`, SpriteKind.Powerup)
+powerup = sprites.create(assets.image`myImage12`, SpriteKind.Powerup)
+powerup = sprites.create(assets.image`myImage13`, SpriteKind.Powerup)
+powerup = sprites.create(assets.image`myImage14`, SpriteKind.Player)
 tiles.setCurrentTilemap(tilemap`level`)
 let Gracity = 300
 let Jump_height = 34
