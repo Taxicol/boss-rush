@@ -8,8 +8,6 @@ function SpawnSomething (num: number) {
     if (num < Powerimage.length) {
         for (let index = 0; index < num; index++) {
             SpawnLocation = tiles.getTilesByType(assets.tile`transparency16`)
-            powerup = sprites.create(Powerimage._pickRandom(), SpriteKind.Powerup)
-            tiles.placeOnRandomTile(powerup, assets.tile`transparency16`)
         }
     } else if (num < Powerimage.length) {
     	
@@ -123,7 +121,6 @@ let Cameratarget: Sprite = null
 let finalattack = 0
 let Theboss: Sprite = null
 let Bossspawn: Image = null
-let powerup: Sprite = null
 let SpawnLocation: tiles.Location[] = []
 let Currentboss = 0
 let Enemy_health: StatusBarSprite = null
