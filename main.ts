@@ -2,6 +2,7 @@ namespace SpriteKind {
     export const Boss = SpriteKind.create()
     export const Camera = SpriteKind.create()
     export const Powerup = SpriteKind.create()
+    export const Bossprojectile = SpriteKind.create()
 }
 function SpawnSomething (num: number) {
     let Powerimage: number[] = []
@@ -107,7 +108,7 @@ function Healthreset () {
     Enemy_health.value = Bossheakth
 }
 let bossattack = false
-let BLueet: Sprite = null
+let projectile: Sprite = null
 let Lastfiretime = 0
 let Turningleft = false
 let fireindex = 0
@@ -156,19 +157,39 @@ game.onUpdate(function () {
     if (game.runtime() > Lastfiretime + Pause_before_shooting) {
         if (controller.B.isPressed()) {
             if (controller.up.isPressed()) {
-                BLueet = sprites.createProjectileFromSprite(assets.image`TaxicolProjectile`, Taxicol, 0, 0 - Projectile_speed)
+                projectile = sprites.createProjectileFromSprite(assets.image`TaxicolProjectile`, Taxicol, 0, 0 - Projectile_speed)
             } else if (Turningleft) {
-                BLueet = sprites.createProjectileFromSprite(assets.image`TaxicolProjectile`, Taxicol, 0 - Projectile_speed, 0)
+                projectile = sprites.createProjectileFromSprite(assets.image`TaxicolProjectile`, Taxicol, 0 - Projectile_speed, 0)
             } else {
-                BLueet = sprites.createProjectileFromSprite(assets.image`TaxicolProjectile`, Taxicol, Projectile_speed, 0)
+                projectile = sprites.createProjectileFromSprite(assets.image`TaxicolProjectile`, Taxicol, Projectile_speed, 0)
             }
-            BLueet.vx += Taxicol.vx
+            projectile.vx += Taxicol.vx
             Lastfiretime = 0
         }
     }
 })
 game.onUpdate(function () {
-	
+    if (Currentboss == 0) {
+        if (bossattack) {
+            if (game.runtime() > bossfiretime + bossfiretime) {
+                projectile = sprites.createProjectileFromSprite(img`
+                    1 1 1 1 1 
+                    1 1 1 1 1 
+                    1 1 1 1 1 
+                    1 1 1 1 1 
+                    1 1 1 1 1 
+                    `, Theboss, -75, 0)
+                projectile.setKind(SpriteKind.Bossprojectile)
+                projectile.y += randint(-16, 10)
+                bossfiretime = game.runtime()
+            }
+        }
+    } else if (Currentboss == 1) {
+        Theboss.left = scene.cameraProperty(CameraProperty.Left) + 12
+        Theboss.y = Math.map(Math.sin(game.runtime() / 1000), 0, 1023, 0, 4)
+    } else {
+    	
+    }
 })
 forever(function () {
     if (Currentboss == 0) {
