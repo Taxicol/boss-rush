@@ -1,6 +1,50 @@
 namespace SpriteKind {
     export const Boss = SpriteKind.create()
     export const Camera = SpriteKind.create()
+    export const Powerup = SpriteKind.create()
+}
+function SpawnSomething (num: number) {
+    let Powerimage: number[] = []
+    if (num < Powerimage.length) {
+        for (let index = 0; index < num; index++) {
+            SpawnLocation = tiles.getTilesByType(assets.tile`transparency16`)
+            powerup = sprites.create(Powerimage._pickRandom(), SpriteKind.Powerup)
+            tiles.placeOnRandomTile(powerup, assets.tile`transparency16`)
+        }
+    } else if (num < Powerimage.length) {
+    	
+    }
+}
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    Taxicol.vy = -50
+    Taxicol.x = 50
+})
+function Failed_slime () {
+    let Boss_location: Image[] = []
+    Bossspawn = Boss_location.shift()
+    Theboss = sprites.create(img`
+        4 4 4 4 4 4 4 4 4 4 4 
+        4 4 4 4 4 4 4 4 4 4 4 
+        4 4 4 4 4 4 4 4 4 4 4 
+        4 4 4 4 4 4 4 4 4 4 4 
+        4 4 4 4 4 4 4 4 4 4 4 
+        4 4 4 4 4 4 4 4 4 4 4 
+        4 4 4 4 4 4 4 4 4 4 4 
+        4 4 4 4 4 4 4 4 4 4 4 
+        4 4 4 4 4 4 4 4 4 4 4 
+        4 4 4 4 4 4 4 4 4 4 4 
+        4 4 4 4 4 4 4 4 4 4 4 
+        `, SpriteKind.Boss)
+    tiles.placeOnRandomTile(Theboss, Bossspawn)
+    animation.runImageAnimation(
+    Theboss,
+    assets.animation`myAnim1`,
+    150,
+    true
+    )
+    Theboss.lifespan = 4000
+    Boss_location.push(Bossspawn)
+    finalattack += 2000
 }
 function Cameramovement () {
     Cameratarget = sprites.create(assets.image`myImage7`, SpriteKind.Camera)
@@ -53,7 +97,7 @@ function Bosscreate (Current: number) {
         finalattack = game.runtime()
         Enemy_health.setColor(4, 15)
         Healthreset()
-        Cameramovement()
+        Failed_slime()
     } else {
     	
     }
@@ -62,18 +106,23 @@ function Healthreset () {
     Enemy_health.max = Bossheakth
     Enemy_health.value = Bossheakth
 }
-let finalattack = 0
+let bossattack = false
+let Turningleft = false
 let fireindex = 0
 let Slime: tiles.Location[] = []
 let Bosshealthnearend = 0
 let bossfiretime = 0
-let Theboss: Sprite = null
 let Bossmovement = 0
 let Timebetweenprojectiles = 0
 let Bossheakth = 0
 let bossspeed = 0
 let sidescroller = 0
 let Cameratarget: Sprite = null
+let finalattack = 0
+let Theboss: Sprite = null
+let Bossspawn: Image = null
+let powerup: Sprite = null
+let SpawnLocation: tiles.Location[] = []
 let Currentboss = 0
 let Enemy_health: StatusBarSprite = null
 let Taxicol: Sprite = null
@@ -96,3 +145,31 @@ Enemy_health.right = 100
 Enemy_health.top = 0
 Enemy_health.setFlag(SpriteFlag.RelativeToCamera, true)
 Bosscreate(Currentboss)
+game.onUpdate(function () {
+    let Lastfiretime = 0
+    if (Taxicol.vx < 0) {
+        Turningleft = true
+    } else if (Taxicol.vx > 0) {
+        Turningleft = false
+    }
+    if (game.runtime() > Lastfiretime + Pause_before_shooting) {
+        if (controller.B.isPressed()) {
+        	
+        }
+    }
+})
+forever(function () {
+    if (Currentboss == 0) {
+        if (Theboss.isHittingTile(CollisionDirection.Bottom) || Theboss.isHittingTile(CollisionDirection.Top)) {
+            bossattack = true
+            pause(Bossmovement)
+            bossattack = true
+            if (Theboss.isHittingTile(CollisionDirection.Bottom)) {
+                Theboss.vy = 0 - bossspeed
+            } else {
+                Theboss.vy = bossspeed
+            }
+            pause(100)
+        }
+    }
+})
