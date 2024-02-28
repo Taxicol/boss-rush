@@ -98,15 +98,6 @@ f f f f f f f . . . f 1 f 1 f f
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `;
-            case "image8":
-            case "TaxicolProjectile":return img`
-. . . . . . . . 
-. 9 1 1 1 1 9 . 
-9 9 9 9 9 9 1 9 
-9 1 9 9 9 9 9 9 
-. 9 1 1 1 1 9 . 
-. . . . . . . . 
-`;
             case "image7":
             case "myImage5":return img`
 ........................
@@ -297,6 +288,15 @@ f f f f f f f f f f f f f f f f
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
+`;
+            case "image8":
+            case "TaxicolProjectile":return img`
+. . . . . . . . 
+. 9 1 1 1 1 9 . 
+9 9 9 9 9 9 1 9 
+9 1 9 9 9 9 9 9 
+. 9 1 1 1 1 9 . 
+. . . . . . . . 
 `;
         }
         return null;

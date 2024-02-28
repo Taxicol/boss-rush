@@ -107,6 +107,8 @@ function Healthreset () {
     Enemy_health.value = Bossheakth
 }
 let bossattack = false
+let BLueet: Sprite = null
+let Lastfiretime = 0
 let Turningleft = false
 let fireindex = 0
 let Slime: tiles.Location[] = []
@@ -146,7 +148,6 @@ Enemy_health.top = 0
 Enemy_health.setFlag(SpriteFlag.RelativeToCamera, true)
 Bosscreate(Currentboss)
 game.onUpdate(function () {
-    let Lastfiretime = 0
     if (Taxicol.vx < 0) {
         Turningleft = true
     } else if (Taxicol.vx > 0) {
@@ -154,9 +155,20 @@ game.onUpdate(function () {
     }
     if (game.runtime() > Lastfiretime + Pause_before_shooting) {
         if (controller.B.isPressed()) {
-        	
+            if (controller.up.isPressed()) {
+                BLueet = sprites.createProjectileFromSprite(assets.image`TaxicolProjectile`, Taxicol, 0, 0 - Projectile_speed)
+            } else if (Turningleft) {
+                BLueet = sprites.createProjectileFromSprite(assets.image`TaxicolProjectile`, Taxicol, 0 - Projectile_speed, 0)
+            } else {
+                BLueet = sprites.createProjectileFromSprite(assets.image`TaxicolProjectile`, Taxicol, Projectile_speed, 0)
+            }
+            BLueet.vx += Taxicol.vx
+            Lastfiretime = 0
         }
     }
+})
+game.onUpdate(function () {
+	
 })
 forever(function () {
     if (Currentboss == 0) {
