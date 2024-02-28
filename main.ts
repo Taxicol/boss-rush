@@ -2,7 +2,6 @@ namespace SpriteKind {
     export const Boss = SpriteKind.create()
     export const Camera = SpriteKind.create()
     export const Powerup = SpriteKind.create()
-    export const Bossprojectile = SpriteKind.create()
 }
 function SpawnSomething (num: number) {
     let Powerimage: number[] = []
@@ -108,7 +107,7 @@ function Healthreset () {
     Enemy_health.value = Bossheakth
 }
 let bossattack = false
-let projectile: Sprite = null
+let BLueet: Sprite = null
 let Lastfiretime = 0
 let Turningleft = false
 let fireindex = 0
@@ -124,16 +123,11 @@ let Cameratarget: Sprite = null
 let finalattack = 0
 let Theboss: Sprite = null
 let Bossspawn: Image = null
+let powerup: Sprite = null
 let SpawnLocation: tiles.Location[] = []
 let Currentboss = 0
 let Enemy_health: StatusBarSprite = null
 let Taxicol: Sprite = null
-let powerup: Sprite = null
-powerup = sprites.create(assets.image`myImage10`, SpriteKind.Powerup)
-powerup = sprites.create(assets.image`myImage11`, SpriteKind.Powerup)
-powerup = sprites.create(assets.image`myImage12`, SpriteKind.Powerup)
-powerup = sprites.create(assets.image`myImage13`, SpriteKind.Powerup)
-powerup = sprites.create(assets.image`myImage14`, SpriteKind.Player)
 tiles.setCurrentTilemap(tilemap`level`)
 let Gracity = 300
 let Jump_height = 34
@@ -162,39 +156,19 @@ game.onUpdate(function () {
     if (game.runtime() > Lastfiretime + Pause_before_shooting) {
         if (controller.B.isPressed()) {
             if (controller.up.isPressed()) {
-                projectile = sprites.createProjectileFromSprite(assets.image`TaxicolProjectile`, Taxicol, 0, 0 - Projectile_speed)
+                BLueet = sprites.createProjectileFromSprite(assets.image`TaxicolProjectile`, Taxicol, 0, 0 - Projectile_speed)
             } else if (Turningleft) {
-                projectile = sprites.createProjectileFromSprite(assets.image`TaxicolProjectile`, Taxicol, 0 - Projectile_speed, 0)
+                BLueet = sprites.createProjectileFromSprite(assets.image`TaxicolProjectile`, Taxicol, 0 - Projectile_speed, 0)
             } else {
-                projectile = sprites.createProjectileFromSprite(assets.image`TaxicolProjectile`, Taxicol, Projectile_speed, 0)
+                BLueet = sprites.createProjectileFromSprite(assets.image`TaxicolProjectile`, Taxicol, Projectile_speed, 0)
             }
-            projectile.vx += Taxicol.vx
+            BLueet.vx += Taxicol.vx
             Lastfiretime = 0
         }
     }
 })
 game.onUpdate(function () {
-    if (Currentboss == 0) {
-        if (bossattack) {
-            if (game.runtime() > bossfiretime + bossfiretime) {
-                projectile = sprites.createProjectileFromSprite(img`
-                    1 1 1 1 1 
-                    1 1 1 1 1 
-                    1 1 1 1 1 
-                    1 1 1 1 1 
-                    1 1 1 1 1 
-                    `, Theboss, -75, 0)
-                projectile.setKind(SpriteKind.Bossprojectile)
-                projectile.y += randint(-16, 10)
-                bossfiretime = game.runtime()
-            }
-        }
-    } else if (Currentboss == 1) {
-        Theboss.left = scene.cameraProperty(CameraProperty.Left) + 12
-        Theboss.y = Math.map(Math.sin(game.runtime() / 1000), 0, 1023, 0, 4)
-    } else {
-    	
-    }
+	
 })
 forever(function () {
     if (Currentboss == 0) {
