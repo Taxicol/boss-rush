@@ -2,6 +2,7 @@ namespace SpriteKind {
     export const Boss = SpriteKind.create()
     export const Camera = SpriteKind.create()
     export const Powerup = SpriteKind.create()
+    export const bossprojectile = SpriteKind.create()
 }
 function SpawnSomething (num: number) {
     let Powerimage: number[] = []
@@ -44,6 +45,9 @@ function Failed_slime () {
     Boss_location.push(Bossspawn)
     finalattack += 2000
 }
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherSprite) {
+	
+})
 function Cameramovement () {
     Cameratarget = sprites.create(assets.image`myImage7`, SpriteKind.Camera)
     Cameratarget.setFlag(SpriteFlag.Ghost, true)
@@ -104,6 +108,7 @@ function Healthreset () {
     Enemy_health.max = Bossheakth
     Enemy_health.value = Bossheakth
 }
+let projectile: Sprite = null
 let bossattack = false
 let BLueet: Sprite = null
 let Lastfiretime = 0
@@ -165,7 +170,21 @@ game.onUpdate(function () {
     }
 })
 game.onUpdate(function () {
-	
+    if (Currentboss == 0) {
+        if (bossattack) {
+            if (game.runtime() > bossfiretime + Timebetweenprojectiles) {
+                projectile = sprites.createProjectileFromSprite(img`
+                    1 1 1 1 1 
+                    1 1 1 1 1 
+                    1 1 1 1 1 
+                    1 1 1 1 1 
+                    1 1 1 1 1 
+                    `, Theboss, -75, 0)
+                projectile.setKind(SpriteKind.bossprojectile)
+                projectile.y += randint(-16, 10)
+            }
+        }
+    }
 })
 forever(function () {
     if (Currentboss == 0) {
