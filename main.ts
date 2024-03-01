@@ -182,8 +182,14 @@ game.onUpdate(function () {
                     `, Theboss, -75, 0)
                 projectile.setKind(SpriteKind.bossprojectile)
                 projectile.y += randint(-16, 10)
+                bossfiretime = game.runtime()
             }
         }
+    } else if (Currentboss == 1) {
+        Theboss.left = scene.cameraProperty(CameraProperty.Left) + 12
+        Theboss.left = Math.map(Math.sin(game.runtime() / 1000), 0, 1023, 0, 4)
+    } else {
+    	
     }
 })
 forever(function () {
