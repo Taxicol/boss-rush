@@ -4,6 +4,9 @@ namespace SpriteKind {
     export const Powerup = SpriteKind.create()
     export const bossprojectile = SpriteKind.create()
 }
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, location) {
+	
+})
 function SpawnSomething (num: number) {
     let Powerimage: number[] = []
     if (num < Powerimage.length) {
@@ -15,8 +18,9 @@ function SpawnSomething (num: number) {
     }
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    Taxicol.vy = -50
-    Taxicol.x = 50
+    if (Taxicol.isHittingTile(CollisionDirection.Bottom)) {
+        Taxicol.vy = Jump_speed
+    }
 })
 function Failed_slime () {
     let Boss_location: Image[] = []
@@ -45,9 +49,6 @@ function Failed_slime () {
     Boss_location.push(Bossspawn)
     finalattack += 2000
 }
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherSprite) {
-	
-})
 function Cameramovement () {
     Cameratarget = sprites.create(assets.image`myImage7`, SpriteKind.Camera)
     Cameratarget.setFlag(SpriteFlag.Ghost, true)
@@ -108,6 +109,25 @@ function Healthreset () {
     Enemy_health.max = Bossheakth
     Enemy_health.value = Bossheakth
 }
+function Clearmap () {
+	
+}
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Boss, function (sprite, otherSprite) {
+    if (Currentboss == 1) {
+        if (game.runtime() > bossfiretime + 1000) {
+            let cameraspeed = 0
+            info.changeLifeBy(-1)
+            Cameratarget.vx = cameraspeed / 4
+            scene.cameraShake(4, 500)
+            pause(1000)
+            Cameratarget.vx = cameraspeed
+        }
+    } else {
+        info.changeLifeBy(-1)
+        pause(500)
+    }
+})
+let Fireangle = 0
 let projectile: Sprite = null
 let bossattack = false
 let BLueet: Sprite = null
@@ -130,13 +150,14 @@ let SpawnLocation: tiles.Location[] = []
 let Currentboss = 0
 let Enemy_health: StatusBarSprite = null
 let Taxicol: Sprite = null
+let Jump_speed = 0
 tiles.setCurrentTilemap(tilemap`level`)
 let Gracity = 300
 let Jump_height = 34
 let Player_speed = 100
 let Projectile_speed = 150
 let Pause_before_shooting = 100
-let Jump_speed = 0 - Math.sqrt(2 * (Gracity * Jump_height))
+Jump_speed = 0 - Math.sqrt(2 * (Gracity * Jump_height))
 Taxicol = sprites.create(assets.image`myImage0`, SpriteKind.Player)
 Taxicol.ay = Gracity
 controller.moveSprite(Taxicol, Player_speed, 100)
@@ -155,8 +176,8 @@ game.onUpdate(function () {
     } else if (Taxicol.vx > 0) {
         Turningleft = false
     }
-    if (game.runtime() > Lastfiretime + Pause_before_shooting) {
-        if (controller.B.isPressed()) {
+    if (controller.B.isPressed()) {
+        if (game.runtime() > Lastfiretime + Pause_before_shooting) {
             if (controller.up.isPressed()) {
                 BLueet = sprites.createProjectileFromSprite(assets.image`TaxicolProjectile`, Taxicol, 0, 0 - Projectile_speed)
             } else if (Turningleft) {
@@ -165,7 +186,7 @@ game.onUpdate(function () {
                 BLueet = sprites.createProjectileFromSprite(assets.image`TaxicolProjectile`, Taxicol, Projectile_speed, 0)
             }
             BLueet.vx += Taxicol.vx
-            Lastfiretime = 0
+            Lastfiretime = game.runtime()
         }
     }
 })
@@ -187,7 +208,37 @@ game.onUpdate(function () {
         }
     } else if (Currentboss == 1) {
         Theboss.left = scene.cameraProperty(CameraProperty.Left) + 12
-        Theboss.left = Math.map(Math.sin(game.runtime() / 1000), 0, 1023, 0, 4)
+        Theboss.left = Math.map(Math.sin(game.runtime() / 1000), -1, 1, 32, scene.screenHeight() - 0)
+    } else if (Currentboss == 2) {
+        if (game.runtime() > bossfiretime + Timebetweenprojectiles) {
+            animation.stopAnimation(animation.AnimationTypes.All, Theboss)
+            Theboss.setImage(assets.image`Failedslimegame`)
+            if (Bossheakth > Bosshealthnearend) {
+                Fireangle = 0.7854 / 2 * fireindex
+                projectile = sprites.createProjectileFromSprite(img`
+                    4 4 4 4 4 
+                    4 4 4 4 4 
+                    4 4 4 4 4 
+                    4 4 4 4 4 
+                    4 4 4 4 4 
+                    `, Theboss, Math.cos(Fireangle) * Projectile_speed, Math.sin(Fireangle) * Projectile_speed)
+                fireindex += 1
+                projectile.setKind(SpriteKind.bossprojectile)
+            } else {
+                for (let index = 0; index <= 7; index++) {
+                    Fireangle = 0.7854 * index
+                    projectile = sprites.createProjectileFromSprite(img`
+                        4 4 4 4 4 
+                        4 4 4 4 4 
+                        4 4 4 4 4 
+                        4 4 4 4 4 
+                        4 4 4 4 4 
+                        `, Theboss, Math.cos(Fireangle) * Projectile_speed, Math.sin(Fireangle) * Projectile_speed)
+                    projectile.setKind(SpriteKind.bossprojectile)
+                }
+            }
+            bossfiretime = game.runtime()
+        }
     } else {
     	
     }
