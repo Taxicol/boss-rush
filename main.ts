@@ -5,7 +5,9 @@ namespace SpriteKind {
     export const bossprojectile = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, location) {
-	
+    Clearmap()
+    Bosscreate(Currentboss)
+    tiles.placeOnTile(Taxicol, tiles.getTileLocation(7, 4))
 })
 function SpawnSomething (num: number) {
     let Powerimage: number[] = []
@@ -21,6 +23,10 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Taxicol.isHittingTile(CollisionDirection.Bottom)) {
         Taxicol.vy = Jump_speed
     }
+})
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Boss, function (sprite, otherSprite) {
+    sprites.destroy(sprite, effects.disintegrate, 10)
+    info.changeLifeBy(-1)
 })
 function Failed_slime () {
     let Boss_location: Image[] = []
@@ -56,6 +62,10 @@ function Cameramovement () {
     Cameratarget.setVelocity(sidescroller, 0)
     scene.cameraFollowSprite(Cameratarget)
 }
+sprites.onOverlap(SpriteKind.bossprojectile, SpriteKind.Player, function (sprite, otherSprite) {
+    sprites.destroy(sprite, effects.disintegrate, 10)
+    info.changeLifeBy(-1)
+})
 function Bosscreate (Current: number) {
     if (Current == 0) {
         bossspeed = 50
@@ -110,7 +120,16 @@ function Healthreset () {
     Enemy_health.value = Bossheakth
 }
 function Clearmap () {
-	
+    sprites.destroy(Theboss)
+    for (let value of sprites.allOfKind(SpriteKind.bossprojectile)) {
+        sprites.destroy(value)
+    }
+    for (let value2 of sprites.allOfKind(SpriteKind.Projectile)) {
+        sprites.destroy(value2)
+    }
+    for (let value3 of sprites.allOfKind(SpriteKind.Camera)) {
+        sprites.destroy(value3)
+    }
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Boss, function (sprite, otherSprite) {
     if (Currentboss == 1) {
