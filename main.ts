@@ -3,6 +3,7 @@ namespace SpriteKind {
     export const Camera = SpriteKind.create()
     export const Powerup = SpriteKind.create()
     export const bossprojectile = SpriteKind.create()
+    export const Rocket = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, location) {
     Clearmap()
@@ -56,7 +57,9 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.bossprojectile, function (sp
         sprites.destroy(sprite, effects.disintegrate, 10)
         sprites.changeDataNumberBy(otherSprite, "health", -1)
         if (sprites.readDataNumber(otherSprite, "health") == 8) {
-        	
+            otherSprite.image.replace(15, 4)
+        } else if (sprites.readDataNumber(otherSprite, "health") == 0) {
+            sprites.destroy(otherSprite)
         }
     }
 })
@@ -193,7 +196,6 @@ Enemy_health.setBarBorder(1, 4)
 Enemy_health.right = 100
 Enemy_health.top = 0
 Enemy_health.setFlag(SpriteFlag.RelativeToCamera, true)
-Bosscreate(Currentboss)
 game.onUpdate(function () {
     if (Taxicol.vx < 0) {
         Turningleft = true
