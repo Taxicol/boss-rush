@@ -25,6 +25,9 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         Taxicol.vy = Jump_speed
     }
 })
+sprites.onDestroyed(SpriteKind.Boss, function (sprite) {
+    Failed_slime()
+})
 function Failed_slime () {
     let Boss_location: Image[] = []
     Bossspawn = Boss_location.shift()
@@ -52,17 +55,6 @@ function Failed_slime () {
     Boss_location.push(Bossspawn)
     finalattack += 2000
 }
-sprites.onOverlap(SpriteKind.Projectile, SpriteKind.bossprojectile, function (sprite, otherSprite) {
-    if (Currentboss == 1) {
-        sprites.destroy(sprite, effects.disintegrate, 10)
-        sprites.changeDataNumberBy(otherSprite, "health", -1)
-        if (sprites.readDataNumber(otherSprite, "health") == 8) {
-            otherSprite.image.replace(15, 4)
-        } else if (sprites.readDataNumber(otherSprite, "health") == 0) {
-            sprites.destroy(otherSprite)
-        }
-    }
-})
 function Cameramovement () {
     Cameratarget = sprites.create(assets.image`myImage7`, SpriteKind.Camera)
     Cameratarget.setFlag(SpriteFlag.Ghost, true)
@@ -154,6 +146,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Boss, function (sprite, otherSpr
         pause(500)
     }
 })
+let projectile2: Sprite = null
 let Fireangle = 0
 let projectile: Sprite = null
 let bossattack = false
@@ -193,9 +186,18 @@ let boss = 0
 Enemy_health = statusbars.create(100, 11, StatusBarKind.Health)
 Enemy_health.setColor(12, 1)
 Enemy_health.setBarBorder(1, 4)
-Enemy_health.right = 100
+Enemy_health.right = 160
 Enemy_health.top = 0
 Enemy_health.setFlag(SpriteFlag.RelativeToCamera, true)
+game.onUpdate(function () {
+    if (Currentboss == 1) {
+        if (Taxicol.right + 16 < scene.cameraProperty(CameraProperty.Left)) {
+            Clearmap()
+            Bosscreate(Currentboss)
+            tiles.placeOnTile(Taxicol, tiles.getTileLocation(7, 4))
+        }
+    }
+})
 game.onUpdate(function () {
     if (Taxicol.vx < 0) {
         Turningleft = true
@@ -282,5 +284,13 @@ forever(function () {
             }
             pause(100)
         }
+    }
+})
+game.onUpdateInterval(3000, function () {
+    if (Currentboss == 1) {
+        projectile2 = sprites.createProjectileFromSprite(assets.image`myImage6`, Theboss, 10, 0)
+        projectile2.setKind(SpriteKind.bossprojectile)
+        projectile2.follow(Taxicol, 15)
+        sprites.setDataNumber(projectile2, "health", 12)
     }
 })
