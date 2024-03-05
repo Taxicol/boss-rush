@@ -24,10 +24,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         Taxicol.vy = Jump_speed
     }
 })
-sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Boss, function (sprite, otherSprite) {
-    sprites.destroy(sprite, effects.disintegrate, 10)
-    info.changeLifeBy(-1)
-})
 function Failed_slime () {
     let Boss_location: Image[] = []
     Bossspawn = Boss_location.shift()
@@ -55,6 +51,15 @@ function Failed_slime () {
     Boss_location.push(Bossspawn)
     finalattack += 2000
 }
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.bossprojectile, function (sprite, otherSprite) {
+    if (Currentboss == 1) {
+        sprites.destroy(sprite, effects.disintegrate, 10)
+        sprites.changeDataNumberBy(otherSprite, "health", -1)
+        if (sprites.readDataNumber(otherSprite, "health") == 8) {
+        	
+        }
+    }
+})
 function Cameramovement () {
     Cameratarget = sprites.create(assets.image`myImage7`, SpriteKind.Camera)
     Cameratarget.setFlag(SpriteFlag.Ghost, true)
