@@ -14,7 +14,7 @@ function SpawnSomething (num: number) {
     let Powerimage: number[] = []
     if (num < Powerimage.length) {
         for (let index = 0; index < num; index++) {
-            SpawnLocation = tiles.getTilesByType(assets.tile`myTile16`)
+            SpawnLocation = tiles.getTilesByType(assets.tile`transparency16`)
         }
     } else if (num < Powerimage.length) {
     	
