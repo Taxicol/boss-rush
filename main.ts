@@ -236,7 +236,7 @@ game.onUpdate(function () {
         }
     } else if (Currentboss == 1) {
         Theboss.left = scene.cameraProperty(CameraProperty.Left) + 12
-        Theboss.left = Math.map(Math.sin(game.runtime() / 1000), -1, 1, 32, scene.screenHeight() - 0)
+        Theboss.y = Math.map(Math.sin(game.runtime() / 1000), -1, 1, 32, scene.screenHeight() - 32)
     } else if (Currentboss == 2) {
         if (game.runtime() > bossfiretime + Timebetweenprojectiles) {
             animation.stopAnimation(animation.AnimationTypes.All, Theboss)
@@ -276,7 +276,7 @@ forever(function () {
         if (Theboss.isHittingTile(CollisionDirection.Bottom) || Theboss.isHittingTile(CollisionDirection.Top)) {
             bossattack = true
             pause(Bossmovement)
-            bossattack = true
+            bossattack = false
             if (Theboss.isHittingTile(CollisionDirection.Bottom)) {
                 Theboss.vy = 0 - bossspeed
             } else {
