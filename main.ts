@@ -208,8 +208,8 @@ controller.moveSprite(Taxicol, playerSpeed, 0)
 info.setLife(10)
 currentBoss = 0
 Enemy_Health = statusbars.create(100, 11, StatusBarKind.Health)
-Enemy_Health.setColor(12, 1)
-Enemy_Health.setBarBorder(1, 3)
+Enemy_Health.setColor(15, 1)
+Enemy_Health.setBarBorder(1, 4)
 Enemy_Health.right = 160
 Enemy_Health.top = 0
 Enemy_Health.setFlag(SpriteFlag.RelativeToCamera, true)
