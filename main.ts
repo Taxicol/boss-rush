@@ -11,18 +11,18 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, l
     tiles.placeOnTile(Taxicol, tiles.getTileLocation(7, 4))
 })
 function SpawnSomething (num: number) {
-    let Powerimage: number[] = []
-    if (num < Powerimage.length) {
-        for (let index = 0; index < num; index++) {
-            SpawnLocation = tiles.getTilesByType(assets.tile`transparency16`)
-        }
-    } else if (num < Powerimage.length) {
-    	
-    }
+	
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Taxicol.isHittingTile(CollisionDirection.Bottom)) {
         Taxicol.vy = Jump_speed
+    }
+})
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Player, function (sprite, otherSprite) {
+    sprites.destroy(Taxicol, effects.disintegrate, 10)
+    Bossheakth += -1
+    if (Bossheakth == 0) {
+        game.gameOver(true)
     }
 })
 sprites.onDestroyed(SpriteKind.Boss, function (sprite) {
@@ -68,13 +68,11 @@ sprites.onOverlap(SpriteKind.bossprojectile, SpriteKind.Player, function (sprite
 })
 function Bosscreate (Current: number) {
     if (Current == 0) {
-        bossspeed = 50
         Bossheakth = 100
+        bossspeed = 50
         Timebetweenprojectiles = 100
         Bossmovement = 2000
-        Theboss = sprites.create(assets.image`myImage5`, SpriteKind.Boss)
-        Theboss.setPosition(145, 48)
-        Theboss.setVelocity(0, 50)
+        bbgun = sprites.create(assets.image`myImage5`, SpriteKind.Boss)
         Healthreset()
     } else if (Current == 1) {
         if (Bossheakth == 0) {
@@ -111,8 +109,6 @@ function Bosscreate (Current: number) {
         Enemy_health.setColor(4, 15)
         Healthreset()
         Failed_slime()
-    } else {
-    	
     }
 }
 function Healthreset () {
@@ -148,29 +144,30 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Boss, function (sprite, otherSpr
 })
 let projectile2: Sprite = null
 let Fireangle = 0
-let projectile: Sprite = null
 let bossattack = false
 let BLueet: Sprite = null
 let Lastfiretime = 0
 let Turningleft = false
+let projectile: Sprite = null
 let fireindex = 0
 let Slime: tiles.Location[] = []
 let Bosshealthnearend = 0
 let bossfiretime = 0
+let bbgun: Sprite = null
 let Bossmovement = 0
 let Timebetweenprojectiles = 0
-let Bossheakth = 0
 let bossspeed = 0
 let sidescroller = 0
 let Cameratarget: Sprite = null
 let finalattack = 0
 let Theboss: Sprite = null
 let Bossspawn: Image = null
-let SpawnLocation: tiles.Location[] = []
+let Bossheakth = 0
 let Currentboss = 0
 let Enemy_health: StatusBarSprite = null
 let Taxicol: Sprite = null
 let Jump_speed = 0
+let boss = 0
 tiles.setCurrentTilemap(tilemap`level`)
 let Gracity = 300
 let Jump_height = 34
@@ -182,20 +179,24 @@ Taxicol = sprites.create(assets.image`myImage0`, SpriteKind.Player)
 Taxicol.ay = Gracity
 controller.moveSprite(Taxicol, Player_speed, 100)
 info.setLife(18)
-let boss = 0
 Enemy_health = statusbars.create(100, 11, StatusBarKind.Health)
 Enemy_health.setColor(12, 1)
 Enemy_health.setBarBorder(1, 4)
 Enemy_health.right = 160
 Enemy_health.top = 0
 Enemy_health.setFlag(SpriteFlag.RelativeToCamera, true)
+Bosscreate(Currentboss)
 game.onUpdate(function () {
-    if (Currentboss == 1) {
-        if (Taxicol.right + 16 < scene.cameraProperty(CameraProperty.Left)) {
-            Clearmap()
-            Bosscreate(Currentboss)
-            tiles.placeOnTile(Taxicol, tiles.getTileLocation(7, 4))
-        }
+    if (Bossheakth) {
+        projectile = sprites.createProjectileFromSprite(img`
+            1 1 1 1 1 
+            1 1 1 1 1 
+            1 1 1 1 1 
+            1 1 1 1 1 
+            1 1 1 1 1 
+            `, Theboss, 0 - Projectile_speed, 0)
+        projectile.setKind(SpriteKind.bossprojectile)
+        projectile.x += randint(-15, 14)
     }
 })
 game.onUpdate(function () {
@@ -269,6 +270,15 @@ game.onUpdate(function () {
         }
     } else {
     	
+    }
+})
+game.onUpdate(function () {
+    if (Currentboss == 1) {
+        if (Taxicol.right + 16 < scene.cameraProperty(CameraProperty.Left)) {
+            Clearmap()
+            Bosscreate(Currentboss)
+            tiles.placeOnTile(Taxicol, tiles.getTileLocation(7, 4))
+        }
     }
 })
 forever(function () {
