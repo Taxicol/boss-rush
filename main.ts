@@ -85,6 +85,13 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Boss, function (sprite, othe
         bossSpeed = 100
     } else if (bossHealth == 0) {
         currentBoss += 1
+        sprites.destroy(otherSprite)
+        createBoss(currentBoss)
+    }
+    if (currentBoss == 2) {
+        if (bossHealth == 0) {
+            game.gameOver(true)
+        }
     }
 })
 sprites.onDestroyed(SpriteKind.Boss, function (sprite) {
@@ -205,7 +212,7 @@ jumpVelocity = 0 - Math.sqrt(2 * (gravity * jumpHeight))
 Taxicol = sprites.create(assets.image`myImage1`, SpriteKind.Player)
 Taxicol.ay = gravity
 controller.moveSprite(Taxicol, playerSpeed, 0)
-info.setLife(10)
+info.setLife(80)
 currentBoss = 0
 Enemy_Health = statusbars.create(100, 11, StatusBarKind.Health)
 Enemy_Health.setColor(15, 1)
