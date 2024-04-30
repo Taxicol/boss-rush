@@ -80,11 +80,11 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Boss, function (sprite, othe
     sprite.destroy(effects.disintegrate, 10)
     bossHealth += -1
     Enemy_Health.value += -1
-    if (bossHealth == 0) {
-        currentBoss += 1
-    } else if (bossHealth == 50 && currentBoss == 0) {
+    if (bossHealth == 50 && currentBoss == 0) {
         timeBetweenBossMove = 1000
         bossSpeed = 100
+    } else if (bossHealth == 0) {
+        currentBoss += 1
     }
 })
 sprites.onDestroyed(SpriteKind.Boss, function (sprite) {
@@ -105,8 +105,8 @@ function initialize_camera () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        . . . . . . . 3 3 . . . . . . . 
-        . . . . . . . 3 3 . . . . . . . 
+        . . . . . . . f f . . . . . . . 
+        . . . . . . . f f . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -151,7 +151,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.BossProjectile, function (sp
         sprite.destroy(effects.disintegrate, 10)
         sprites.changeDataNumberBy(otherSprite, "health", -1)
         if (sprites.readDataNumber(otherSprite, "health") == 8) {
-            otherSprite.image.replace(5, 4)
+            otherSprite.image.replace(15, 4)
         } else if (sprites.readDataNumber(otherSprite, "health") == 4) {
             otherSprite.image.replace(4, 2)
         } else if (sprites.readDataNumber(otherSprite, "health") == 0) {
@@ -292,8 +292,6 @@ game.onUpdate(function () {
             }
             lastBossFireTime = game.runtime()
         }
-    } else {
-    	
     }
 })
 forever(function () {
