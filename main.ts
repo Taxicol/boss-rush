@@ -7,7 +7,7 @@ namespace SpriteKind {
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, location) {
     Clearmap()
-    Bosscreate(Currentboss)
+    CreatBoss(Currentboss)
     tiles.placeOnTile(Taxicol, tiles.getTileLocation(7, 4))
 })
 function SpawnSomething (num: number) {
@@ -18,61 +18,31 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         Taxicol.vy = Jump_speed
     }
 })
-sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Player, function (sprite, otherSprite) {
-    sprites.destroy(Taxicol, effects.disintegrate, 10)
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Boss, function (sprite, otherSprite) {
+    sprites.destroy(sprite, effects.disintegrate, 10)
     Bossheakth += -1
-    if (Bossheakth == 0) {
-        game.gameOver(true)
+    Enemy_health.value += -1
+    if ((0 as any) == (50 as any) && 0 == 0) {
+        Bossmovement = 1000
+        bossspeed = 100
+    } else if (Bossheakth == 0) {
+        Currentboss += 1
     }
 })
 sprites.onDestroyed(SpriteKind.Boss, function (sprite) {
-    Failed_slime()
+    if (Currentboss == 2 && Bossheakth > 0) {
+        Failed_slime()
+    }
 })
-function Failed_slime () {
-    let Boss_location: Image[] = []
-    Bossspawn = Boss_location.shift()
-    Theboss = sprites.create(img`
-        4 4 4 4 4 4 4 4 4 4 4 
-        4 4 4 4 4 4 4 4 4 4 4 
-        4 4 4 4 4 4 4 4 4 4 4 
-        4 4 4 4 4 4 4 4 4 4 4 
-        4 4 4 4 4 4 4 4 4 4 4 
-        4 4 4 4 4 4 4 4 4 4 4 
-        4 4 4 4 4 4 4 4 4 4 4 
-        4 4 4 4 4 4 4 4 4 4 4 
-        4 4 4 4 4 4 4 4 4 4 4 
-        4 4 4 4 4 4 4 4 4 4 4 
-        4 4 4 4 4 4 4 4 4 4 4 
-        `, SpriteKind.Boss)
-    tiles.placeOnRandomTile(Theboss, Bossspawn)
-    animation.runImageAnimation(
-    Theboss,
-    assets.animation`myAnim1`,
-    150,
-    true
-    )
-    Theboss.lifespan = 4000
-    Boss_location.push(Bossspawn)
-    finalattack += 2000
-}
-function Cameramovement () {
-    Cameratarget = sprites.create(assets.image`myImage7`, SpriteKind.Camera)
-    Cameratarget.setFlag(SpriteFlag.Ghost, true)
-    Cameratarget.setFlag(SpriteFlag.Invisible, true)
-    Cameratarget.setVelocity(sidescroller, 0)
-    scene.cameraFollowSprite(Cameratarget)
-}
-sprites.onOverlap(SpriteKind.bossprojectile, SpriteKind.Player, function (sprite, otherSprite) {
-    sprites.destroy(sprite, effects.disintegrate, 10)
-    info.changeLifeBy(-1)
-})
-function Bosscreate (Current: number) {
+function CreatBoss (Current: number) {
     if (Current == 0) {
-        Bossheakth = 100
+        Bossheakth = 1
         bossspeed = 50
         Timebetweenprojectiles = 100
         Bossmovement = 2000
-        bbgun = sprites.create(assets.image`myImage5`, SpriteKind.Boss)
+        Theboss = sprites.create(assets.image`myImage5`, SpriteKind.Boss)
+        Theboss.setPosition(145, 58)
+        Theboss.setVelocity(0, 50)
         Healthreset()
     } else if (Current == 1) {
         if (Bossheakth == 0) {
@@ -102,7 +72,7 @@ function Bosscreate (Current: number) {
         Bossheakth = 50
         Bosshealthnearend = Bossheakth / 3
         tiles.setCurrentTilemap(tilemap`level0`)
-        tiles.placeOnTile(Taxicol, tiles.getTileLocation(2, 2))
+        tiles.placeOnTile(Taxicol, tiles.getTileLocation(2, 1))
         Slime = tiles.getTilesByType(assets.tile`myTile5`)
         fireindex = 0
         finalattack = game.runtime()
@@ -111,6 +81,56 @@ function Bosscreate (Current: number) {
         Failed_slime()
     }
 }
+function Failed_slime () {
+    let Boss_location: Image[] = []
+    Bossspawn = Boss_location.shift()
+    Theboss = sprites.create(img`
+        5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 
+        `, SpriteKind.Boss)
+    tiles.placeOnRandomTile(Theboss, Bossspawn)
+    animation.runImageAnimation(
+    Theboss,
+    assets.animation`myAnim1`,
+    150,
+    true
+    )
+    Theboss.lifespan = 4000
+    Boss_location.push(Bossspawn)
+    finalattack += 2000
+}
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.bossprojectile, function (sprite, otherSprite) {
+    if (Currentboss == 1) {
+        sprites.changeDataNumberBy(otherSprite, "health", -1)
+        if (sprites.readDataNumber(otherSprite, "health") == 8) {
+            otherSprite.image.replace(15, 4)
+        } else if (sprites.readDataNumber(otherSprite, "health") == 4) {
+            otherSprite.image.replace(4, 2)
+        } else if (sprites.readDataNumber(otherSprite, "health") == 0) {
+            sprites.destroy(otherSprite)
+        }
+    }
+})
+function Cameramovement () {
+    Cameratarget = sprites.create(assets.image`myImage7`, SpriteKind.Camera)
+    Cameratarget.setFlag(SpriteFlag.Ghost, true)
+    Cameratarget.setFlag(SpriteFlag.Invisible, true)
+    Cameratarget.setVelocity(sidescroller, 0)
+    scene.cameraFollowSprite(Cameratarget)
+}
+sprites.onOverlap(SpriteKind.bossprojectile, SpriteKind.Player, function (sprite, otherSprite) {
+    sprites.destroy(sprite, effects.disintegrate, 10)
+    info.changeLifeBy(-1)
+})
 function Healthreset () {
     Enemy_health.max = Bossheakth
     Enemy_health.value = Bossheakth
@@ -144,24 +164,23 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Boss, function (sprite, otherSpr
 })
 let projectile2: Sprite = null
 let Fireangle = 0
+let projectile: Sprite = null
 let bossattack = false
 let BLueet: Sprite = null
 let Lastfiretime = 0
 let Turningleft = false
-let projectile: Sprite = null
+let Cameratarget: Sprite = null
+let Bossspawn: Image = null
+let finalattack = 0
 let fireindex = 0
 let Slime: tiles.Location[] = []
 let Bosshealthnearend = 0
 let bossfiretime = 0
-let bbgun: Sprite = null
-let Bossmovement = 0
+let sidescroller = 0
+let Theboss: Sprite = null
 let Timebetweenprojectiles = 0
 let bossspeed = 0
-let sidescroller = 0
-let Cameratarget: Sprite = null
-let finalattack = 0
-let Theboss: Sprite = null
-let Bossspawn: Image = null
+let Bossmovement = 0
 let Bossheakth = 0
 let Currentboss = 0
 let Enemy_health: StatusBarSprite = null
@@ -185,20 +204,7 @@ Enemy_health.setBarBorder(1, 4)
 Enemy_health.right = 160
 Enemy_health.top = 0
 Enemy_health.setFlag(SpriteFlag.RelativeToCamera, true)
-Bosscreate(Currentboss)
-game.onUpdate(function () {
-    if (Bossheakth) {
-        projectile = sprites.createProjectileFromSprite(img`
-            1 1 1 1 1 
-            1 1 1 1 1 
-            1 1 1 1 1 
-            1 1 1 1 1 
-            1 1 1 1 1 
-            `, Theboss, 0 - Projectile_speed, 0)
-        projectile.setKind(SpriteKind.bossprojectile)
-        projectile.x += randint(-15, 14)
-    }
-})
+CreatBoss(Currentboss)
 game.onUpdate(function () {
     if (Taxicol.vx < 0) {
         Turningleft = true
@@ -276,7 +282,7 @@ game.onUpdate(function () {
     if (Currentboss == 1) {
         if (Taxicol.right + 16 < scene.cameraProperty(CameraProperty.Left)) {
             Clearmap()
-            Bosscreate(Currentboss)
+            CreatBoss(Currentboss)
             tiles.placeOnTile(Taxicol, tiles.getTileLocation(7, 4))
         }
     }
@@ -300,7 +306,7 @@ game.onUpdateInterval(3000, function () {
     if (Currentboss == 1) {
         projectile2 = sprites.createProjectileFromSprite(assets.image`myImage6`, Theboss, 10, 0)
         projectile2.setKind(SpriteKind.bossprojectile)
-        projectile2.follow(Taxicol, 15)
+        projectile2.follow(Taxicol, 35)
         sprites.setDataNumber(projectile2, "health", 12)
     }
 })
