@@ -227,7 +227,7 @@ jumpVelocity = 0 - Math.sqrt(2 * (gravity * jumpHeight))
 Taxicol = sprites.create(assets.image`myImage1`, SpriteKind.Player)
 Taxicol.ay = gravity
 controller.moveSprite(Taxicol, playerSpeed, 0)
-info.setLife(1000)
+info.setLife(10)
 currentBoss = 0
 Enemy_Health = statusbars.create(100, 11, StatusBarKind.Health)
 Enemy_Health.setColor(15, 1)
