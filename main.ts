@@ -97,6 +97,16 @@ sprites.onDestroyed(SpriteKind.Boss, function (sprite) {
         Failed_slime()
     }
 })
+function Pleasemakesomething (num: number) {
+    if (num < Foodlist.length) {
+        for (let index = 0; index < num; index++) {
+            let list: Image[] = []
+            FoodLocation = tiles.getTilesByType(assets.tile`myTile16`)
+            powerup = sprites.create(list._pickRandom(), SpriteKind.Food)
+            tiles.placeOnRandomTile(powerup, assets.tile`myTile16`)
+        }
+    }
+}
 sprites.onOverlap(SpriteKind.BossProjectile, SpriteKind.Player, function (sprite, otherSprite) {
     sprite.destroy(effects.disintegrate, 10)
     info.changeLifeBy(-1)
@@ -151,15 +161,10 @@ function Failed_slime () {
     bossLocations.push(bossSpawn)
     lastBossFireTime += 2000
 }
-function Spawnsomething (num: number) {
-    if (num < Foodlist.length) {
-        for (let index = 0; index < num; index++) {
-            FoodLocation = tiles.getTilesByType(assets.tile`myTile16`)
-            powerup = sprites.create(Foodlist._pickRandom(), SpriteKind.Food)
-            tiles.placeOnRandomTile(powerup, assets.tile`myTile16`)
-        }
-    }
-}
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    info.changeLifeBy(1)
+    pause(5000)
+})
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.BossProjectile, function (sprite, otherSprite) {
     if (currentBoss == 1) {
         sprite.destroy(effects.disintegrate, 10)
@@ -193,10 +198,10 @@ let isBossAttacking = false
 let projectile: Sprite = null
 let lastFireTime = 0
 let isFacingLeft = false
-let powerup: Sprite = null
-let FoodLocation: tiles.Location[] = []
 let bossSpawn: tiles.Location = null
 let camera_target: Sprite = null
+let powerup: Sprite = null
+let FoodLocation: tiles.Location[] = []
 let currentFireIndex = 0
 let bossLocations: tiles.Location[] = []
 let bossHealthThreshold = 0
@@ -230,8 +235,31 @@ Enemy_Health.setBarBorder(1, 4)
 Enemy_Health.right = 160
 Enemy_Health.top = 0
 Enemy_Health.setFlag(SpriteFlag.RelativeToCamera, true)
+Foodlist = [
+sprites.create(assets.image`myImage12`, SpriteKind.Food),
+sprites.create(assets.image`myImage11`, SpriteKind.Food),
+sprites.create(assets.image`myImage10`, SpriteKind.Food),
+sprites.create(img`
+    . . . . . . . e e e e . . . . . 
+    . . . . . e e 4 5 5 5 e e . . . 
+    . . . . e 4 5 6 2 2 7 6 6 e . . 
+    . . . e 5 6 6 7 2 2 6 4 4 4 e . 
+    . . e 5 2 2 7 6 6 4 5 5 5 5 4 . 
+    . e 5 6 2 2 8 8 5 5 5 5 5 4 5 4 
+    . e 5 6 7 7 8 5 4 5 4 5 5 5 5 4 
+    e 4 5 8 6 6 5 5 5 5 5 5 4 5 5 4 
+    e 5 c e 8 5 5 5 4 5 5 5 5 5 5 4 
+    e 5 c c e 5 4 5 5 5 4 5 5 5 e . 
+    e 5 c c 5 5 5 5 5 5 5 5 4 e . . 
+    e 5 e c 5 4 5 4 5 5 5 e e . . . 
+    e 5 e e 5 5 5 5 5 4 e . . . . . 
+    4 5 4 e 5 5 5 5 e e . . . . . . 
+    . 4 5 4 5 5 4 e . . . . . . . . 
+    . . 4 4 e e e . . . . . . . . . 
+    `, SpriteKind.Food)
+]
 createBoss(currentBoss)
-Foodlist = [sprites.create(assets.image`myImage12`, SpriteKind.Food), sprites.create(assets.image`myImage11`, SpriteKind.Food), sprites.create(assets.image`myImage10`, SpriteKind.Food)]
+Pleasemakesomething(0)
 game.onUpdate(function () {
     if (Taxicol.vx < 0) {
         isFacingLeft = true
