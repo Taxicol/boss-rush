@@ -85,6 +85,8 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Boss, function (sprite, othe
         bossSpeed = 100
     } else if (bossHealth == 0) {
         currentBoss += 1
+        sprites.destroy(otherSprite)
+        createBoss(currentBoss)
     }
 })
 sprites.onDestroyed(SpriteKind.Boss, function (sprite) {
