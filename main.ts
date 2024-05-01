@@ -88,6 +88,9 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Boss, function (sprite, othe
         sprites.destroy(otherSprite)
         createBoss(currentBoss)
     }
+    if (currentBoss == 2 && bossHealth <= 1) {
+        game.gameOver(true)
+    }
 })
 sprites.onDestroyed(SpriteKind.Boss, function (sprite) {
     if (currentBoss == 2 && bossHealth > 0) {
@@ -148,6 +151,15 @@ function Failed_slime () {
     bossLocations.push(bossSpawn)
     lastBossFireTime += 2000
 }
+function Spawnsomething (num: number) {
+    if (num < Foodlist.length) {
+        for (let index = 0; index < num; index++) {
+            FoodLocation = tiles.getTilesByType(assets.tile`myTile16`)
+            powerup = sprites.create(Foodlist._pickRandom(), SpriteKind.Food)
+            tiles.placeOnRandomTile(powerup, assets.tile`myTile16`)
+        }
+    }
+}
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.BossProjectile, function (sprite, otherSprite) {
     if (currentBoss == 1) {
         sprite.destroy(effects.disintegrate, 10)
@@ -181,6 +193,8 @@ let isBossAttacking = false
 let projectile: Sprite = null
 let lastFireTime = 0
 let isFacingLeft = false
+let powerup: Sprite = null
+let FoodLocation: tiles.Location[] = []
 let bossSpawn: tiles.Location = null
 let camera_target: Sprite = null
 let currentFireIndex = 0
@@ -193,6 +207,7 @@ let timeBetweenBossMove = 0
 let timeBetweenBossFire = 0
 let bossHealth = 0
 let bossSpeed = 0
+let Foodlist: Sprite[] = []
 let Enemy_Health: StatusBarSprite = null
 let currentBoss = 0
 let Taxicol: Sprite = null
@@ -207,7 +222,7 @@ jumpVelocity = 0 - Math.sqrt(2 * (gravity * jumpHeight))
 Taxicol = sprites.create(assets.image`myImage1`, SpriteKind.Player)
 Taxicol.ay = gravity
 controller.moveSprite(Taxicol, playerSpeed, 0)
-info.setLife(10)
+info.setLife(1000)
 currentBoss = 0
 Enemy_Health = statusbars.create(100, 11, StatusBarKind.Health)
 Enemy_Health.setColor(15, 1)
@@ -216,6 +231,7 @@ Enemy_Health.right = 160
 Enemy_Health.top = 0
 Enemy_Health.setFlag(SpriteFlag.RelativeToCamera, true)
 createBoss(currentBoss)
+Foodlist = [sprites.create(assets.image`myImage12`, SpriteKind.Food), sprites.create(assets.image`myImage11`, SpriteKind.Food), sprites.create(assets.image`myImage10`, SpriteKind.Food)]
 game.onUpdate(function () {
     if (Taxicol.vx < 0) {
         isFacingLeft = true
